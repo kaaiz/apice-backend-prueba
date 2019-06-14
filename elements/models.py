@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from PIL import Image
+from django.contrib.auth.models import AbstractBaseUser
 
 class Category(models.Model):
     title = models.CharField(max_length=100, default="")
@@ -44,7 +45,7 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
-class User(models.Model):
+class User(AbstractBaseUser):
     username = models.CharField(max_length=100, default="")
     first_name = models.CharField(max_length=100, default="")
     last_name = models.CharField(max_length=100, default="")
@@ -55,4 +56,4 @@ class User(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.title
+        return self.username

@@ -31,16 +31,16 @@ class UserSerializer(serializers.ModelSerializer):
     
     def create(self, validated_data):
         user = User.objects.create(
-            username=validated_data('username'),
-            first_name=validated_data('first_name'),
-            last_name=validated_data('last_name'),
-            is_staff=validated_data('is_staff'),
-            is_active=validated_data('is_active'),
-            email=validated_data('email'),
-            created_date=validated_data('created_date'),
+            username=validated_data['username'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name'],
+            is_staff=validated_data['is_staff'],
+            is_active=validated_data['is_active'],
+            email=validated_data['email'],
+            created_date=validated_data['created_date'],
         )
 
-        user.set_password(validated_data('password'))
+        user.set_password(validated_data['password'])
         user.save()
 
         return user
